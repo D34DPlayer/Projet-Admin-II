@@ -1,0 +1,11 @@
+www.m1-2.ephec-ti.be {
+    reverse_proxy web_vitrine:80
+}
+
+b2b.m1-2.ephec-ti.be {
+    reverse_proxy web_b2b:80
+}
+
+www.m1-2.local {
+    reverse_proxy web_interne:80
+}
