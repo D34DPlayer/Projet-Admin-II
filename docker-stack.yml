@@ -1,0 +1,93 @@
+version: "3.3"
+services:
+
+  # SIMULATION POSTES
+  simul-commercial:
+    image: d34d/projet-admin:employes-commercial
+    networks:
+      local:
+        ipv4_address: 192.168.2.129
+    stdin_open: true
+    tty: true
+
+  simul-comptable:
+    image: d34d/projet-admin:employes-comptable
+    networks:
+      local:
+        ipv4_address: 192.168.2.65
+    stdin_open: true
+    tty: true
+  
+  simul-direction:
+    image: d34d/projet-admin:employes-direction
+    networks:
+      local:
+        ipv4_address: 192.168.2.1
+    stdin_open: true
+    tty: true    
+  
+  simul-ouvrier:
+    image: d34d/projet-admin:employes-ouvrier
+    networks:
+      local:
+        ipv4_address: 192.168.2.97
+    stdin_open: true
+    tty: true
+  
+  simul-secretaire:
+    image: d34d/projet-admin:employes-secretaire
+    networks:
+      local:
+        ipv4_address: 192.168.2.33
+    stdin_open: true
+    tty: true
+  
+  # WEB
+  web-reverseproxy:
+    image: d34d/projet-admin:web-reverseproxy
+    networks:
+      local:
+        ipv4_address: 192.168.0.1
+    volumes:
+      - "web-caddy-data:/data"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
+
+  web-server:
+    image: d34d/projet-admin:web-server
+    networks:
+      local:
+        aliases: 
+          - "web-b2b"
+          - "web-vitrine"
+          - "web-interne"
+        ipv4_address: 192.168.0.3
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
+  
+  web-db:
+    image: mariadb:10
+    networks:
+      local:
+        ipv4_address: 192.168.1.2
+    volumes:
+      - "web-db-data:/var/lib/mysql"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=secret"
+    deploy:
+      placement:
+        constraints: [node.role == manager] # Pour que la db se lance tjrs au même endroit, avec le même volume
+
+networks:
+  local:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/16
+
+volumes:
+  web-db-data:
+  web-caddy-data:
