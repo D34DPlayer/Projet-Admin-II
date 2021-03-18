@@ -1,0 +1,7 @@
+www.${DOMAIN_NAME} {
+    reverse_proxy 192.168.0.3:80
+}
+
+b2b.${DOMAIN_NAME} {
+    reverse_proxy 192.168.0.3:80
+}
