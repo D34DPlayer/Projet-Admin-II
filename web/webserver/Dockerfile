@@ -1,6 +1,6 @@
 FROM php:apache
 
-LABEL version="1.2"
+LABEL version="1.3"
 LABEL description="Serveur web."
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/

@@ -18,6 +18,20 @@ $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['user'] = 'root';
 $cfg['Servers'][$i]['password'] = '';
 
+/* Server: database-ssl [1] */
+$i++;
+$cfg['Servers'][$i]['verbose'] = 'database-ssl';
+$cfg['Servers'][$i]['host'] = '192.168.1.2';
+$cfg['Servers'][$i]['port'] = '';
+$cfg['Servers'][$i]['socket'] = '';
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['password'] = '';
+$cfg['Servers'][$i]['ssl'] = true;
+$cfg['Servers'][$i]['ssl_key'] = '/etc/apache2/certificate/client.key';
+$cfg['Servers'][$i]['ssl_cert'] = '/etc/apache2/certificate/client.crt';
+$cfg['Servers'][$i]['ssl_ca'] = '/etc/apache2/certificate/ca.crt';
+
 /* End of servers configuration */
 
 $cfg['blowfish_secret'] = '8Ur-aX!ZzMS)PaaihvinVax3;<nJmGEH';

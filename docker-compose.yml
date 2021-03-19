@@ -48,6 +48,9 @@ services:
     networks:
       local:
         ipv4_address: 192.168.0.5
+        aliases:
+          - "www.${DOMAIN_NAME}" # EN ATTENDANT LE DNS
+          - "b2b.${DOMAIN_NAME}" # EN ATTENDANT LE DNS
     volumes:
       - "web-caddy-data:/data"
     ports:
@@ -67,22 +70,24 @@ services:
           - "web-b2b"
           - "web-vitrine"
           - "web-interne"
+          - "www.local" #EN ATTENDANT LE DNS
         ipv4_address: 192.168.0.3
     environment:
       - "DOMAIN_NAME=${DOMAIN_NAME}"
     volumes:
-      - "web-server-certificats:/etc/apache2/certificate"
+      - "web-server-crt:/etc/apache2/certificate"
     deploy:
       placement:
         constraints: [node.role == manager]
   
   web-db:
-    image: mariadb:10
+    image: d34d/projet-admin:web-db
     networks:
       local:
         ipv4_address: 192.168.1.2
     volumes:
       - "web-db-data:/var/lib/mysql"
+      - "web-db-crt:/etc/mysql/ssl"
     environment:
       - "MYSQL_ROOT_PASSWORD=secret"
     deploy:
@@ -98,5 +103,6 @@ networks:
 
 volumes:
   web-db-data:
+  web-db-crt:
   web-caddy-data:
-  web-server-certificats:
+  web-server-crt:
