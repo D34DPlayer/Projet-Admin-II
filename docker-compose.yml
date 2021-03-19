@@ -47,9 +47,12 @@ services:
     image: d34d/projet-admin:web-reverseproxy
     networks:
       local:
-        ipv4_address: 192.168.0.1
+        ipv4_address: 192.168.0.5
     volumes:
       - "web-caddy-data:/data"
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -67,6 +70,11 @@ services:
         ipv4_address: 192.168.0.3
     environment:
       - "DOMAIN_NAME=${DOMAIN_NAME}"
+    volumes:
+      - "web-server-certificats:/etc/apache2/certificate"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
   
   web-db:
     image: mariadb:10
@@ -91,3 +99,4 @@ networks:
 volumes:
   web-db-data:
   web-caddy-data:
+  web-server-certificats:
