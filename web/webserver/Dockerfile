@@ -1,6 +1,6 @@
 FROM php:apache
 
-LABEL version="1.0"
+LABEL version="1.3"
 LABEL description="Serveur web."
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -19,3 +19,5 @@ COPY ./interne/ /var/www/html/interne/
 RUN a2enmod ssl rewrite && \
     a2dissite 000-default && \
     a2ensite vitrine b2b interne
+
+RUN chown -R www-data:www-data /var/www/html
