@@ -94,6 +94,24 @@ services:
       placement:
         constraints: [node.role == manager] # Pour que la db se lance tjrs au même endroit, avec le même volume
 
+  # VPN
+  vpn-server:
+    image: d34d/projet-admin:vpn-server
+    networks:
+      local:
+        ipv4_address: 192.168.0.2
+    ports:
+      - "1194:1194/udp"
+    volumes:
+      - "vpn-crt:/etc/openvpn/certs"
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
+    cap_add:
+      - NET_ADMIN
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
 networks:
   local:
     ipam:
@@ -106,3 +124,4 @@ volumes:
   web-db-crt:
   web-caddy-data:
   web-server-crt:
+  vpn-crt:
