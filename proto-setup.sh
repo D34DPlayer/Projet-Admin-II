@@ -91,6 +91,6 @@ docker-compose -p admin up -d
 # TRUST CA IN SIMUL
 
 docker cp ./certs/ca.crt admin_simul-commercial_1:/usr/local/share/ca-certificates/
-docker exec admin_simul-commercial_1 update_ca_certificates
+docker exec admin_simul-commercial_1 update-ca-certificates
 
 

@@ -49,6 +49,11 @@ function setupIptablesAndRouting {
     done
 }
 
+# replace ipv6 prefix in config from env var
+echo "
+server-ipv6 \"${IPV6_64}:3::/80\"
+push \"route-ipv6 ${IPV6_64}:2::/80\"
+" >> $OPENVPN/openvpn.conf
 
 addArg "--config" "$OPENVPN/openvpn.conf"
 
