@@ -1,0 +1,17 @@
+$ORIGIN local.    ; default zone domain
+$TTL 86400        ; default time to live
+
+@ IN SOA local. admin.local. (
+        2021032801  ; serial number
+        21600       ; Refresh
+        3600        ; Retry
+        604800      ; Expire
+        86400       ; Min TTL
+        )
+
+        NS      ns.local.
+		A       192.168.0.3
+
+
+ns    IN     A        192.168.0.2
+www   IN     A        192.168.0.3

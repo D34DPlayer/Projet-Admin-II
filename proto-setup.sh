@@ -77,6 +77,12 @@ docker cp ./certs/ca.crt db:/etc/mysql/ssl/
 docker exec ws chown -R www-data:www-data /etc/apache2/certificate
 docker exec db chown -R mysql:mysql /etc/mysql/ssl
 
+
+# CREATE PKI VPN
+
+docker-compose -p admin run vpn-server ovpn_initpki
+
+
 # LAUNCH ALL THE SERVICES
 
 docker-compose -p admin down
@@ -85,4 +91,6 @@ docker-compose -p admin up -d
 # TRUST CA IN SIMUL
 
 docker cp ./certs/ca.crt admin_simul-commercial_1:/usr/local/share/ca-certificates/
-docker exec admin_simul-commercial_1 update_ca_certificates
+docker exec admin_simul-commercial_1 update-ca-certificates
+
+
