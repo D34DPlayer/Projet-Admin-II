@@ -117,12 +117,10 @@ services:
 
 networks:
   local:
-    enable_ipv6: true
     ipam:
       driver: default
       config:
         - subnet: 192.168.0.0/16
-        - subnet: ${IPV6_64}:2::/80
 
 volumes:
   web-db-data:
