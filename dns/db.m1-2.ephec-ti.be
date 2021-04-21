@@ -1,7 +1,7 @@
-$ORIGIN m1-2.ephec-ti.be.    ; default zone domain
-$TTL 86400                   ; default time to live
+$ORIGIN ${DOMAIN_NAME}.    ; default zone domain
+$TTL 86400                 ; default time to live
 
-@ IN SOA m1-2.ephec-ti.be. admin.m1-2.ephec-ti.be. (
+@ IN SOA ${DOMAIN_NAME}. admin.${DOMAIN_NAME}. (
         2021032801  ; serial number
         21600       ; Refresh
         3600        ; Retry
@@ -9,8 +9,8 @@ $TTL 86400                   ; default time to live
         86400       ; Min TTL
         )
 
-        NS      ns1.m1-2.ephec-ti.be.
-        MX      10 mail.m1-2.ephec-ti.be.
+        NS      ns1.${DOMAIN_NAME}.
+        MX      10 mail.${DOMAIN_NAME}.
 		A       192.168.0.3
 
 
