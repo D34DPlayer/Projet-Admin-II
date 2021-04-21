@@ -17,15 +17,15 @@ services:
         ipv4_address: 192.168.2.65
     stdin_open: true
     tty: true
-  
+
   simul-direction:
     image: d34d/projet-admin:employes-direction
     networks:
       local:
         ipv4_address: 192.168.2.1
     stdin_open: true
-    tty: true    
-  
+    tty: true
+
   simul-ouvrier:
     image: d34d/projet-admin:employes-ouvrier
     networks:
@@ -33,7 +33,7 @@ services:
         ipv4_address: 192.168.2.97
     stdin_open: true
     tty: true
-  
+
   simul-secretaire:
     image: d34d/projet-admin:employes-secretaire
     networks:
@@ -41,7 +41,7 @@ services:
         ipv4_address: 192.168.2.33
     stdin_open: true
     tty: true
-  
+
   # WEB
   web-reverseproxy:
     image: d34d/projet-admin:web-reverseproxy
@@ -66,7 +66,7 @@ services:
     image: d34d/projet-admin:web-server
     networks:
       local:
-        aliases: 
+        aliases:
           - "web-b2b"
           - "web-vitrine"
           - "web-interne"
@@ -79,7 +79,7 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
-  
+
   web-db:
     image: d34d/projet-admin:web-db
     networks:
@@ -99,7 +99,7 @@ services:
     image: d34d/projet-admin:vpn-server
     networks:
       local:
-        ipv4_address: 192.168.0.2
+        ipv4_address: 192.168.0.4
     ports:
       - "1194:1194/udp"
     volumes:
@@ -114,6 +114,18 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+
+  # DNS
+  dns:
+    image: d34d/projet-admin:dns
+    networks:
+      local:
+        ipv4_address: 192.168.0.2
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
 
 networks:
   local:
