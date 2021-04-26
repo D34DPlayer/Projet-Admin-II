@@ -1,7 +1,7 @@
 FROM internetsystemsconsortium/bind9:9.16
 
-COPY named.conf /etc/bind/
 COPY db.local /etc/bind/
+COPY named.conf /etc/bind/named.conf.template
 COPY db.m1-2.ephec-ti.be /etc/bind/db.template
 
 COPY entrypoint.sh /

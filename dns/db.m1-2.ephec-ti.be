@@ -14,9 +14,9 @@ $TTL 86400                 ; default time to live
 		A       192.168.0.3
 
 
-ns1   IN     A        127.0.0.1
+ns1   IN     A        ${PUBLIC_IP}
 www   IN     A        192.168.0.3
-;www   IN     A        public ip
+www   IN     A        ${PUBLIC_IP}
 b2b   IN     CNAME    www
-;mail  IN     A       192.168.0.X?
-;mail  IN     A       public ip
+mail  IN     A        192.168.0.7
+mail  IN     A        ${PUBLIC_IP}

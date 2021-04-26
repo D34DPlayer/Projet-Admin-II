@@ -126,6 +126,7 @@ services:
       - "53:53/tcp"
     environment:
       - "DOMAIN_NAME=${DOMAIN_NAME}"
+      - "PUBLIC_IP=${PUBLIC_IP}"
 
 networks:
   local:
