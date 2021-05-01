@@ -11,47 +11,63 @@ services:
   # SIMULATION POSTES
   simul-commercial:
     image: d34d/projet-admin:employes-commercial
+    build: ./employes/commercial
     networks:
       local:
         ipv4_address: 192.168.2.129
+    volumes:
+      - ./certs/ca.crt:/usr/local/share/ca-certificates/ca.crt
     stdin_open: true
     tty: true
 
   simul-comptable:
     image: d34d/projet-admin:employes-comptable
+    build: ./employes/comptable
     networks:
       local:
         ipv4_address: 192.168.2.65
+    volumes:
+      - ./certs/ca.crt:/usr/local/share/ca-certificates/ca.crt
     stdin_open: true
     tty: true
 
   simul-direction:
     image: d34d/projet-admin:employes-direction
+    build: ./employes/direction
     networks:
       local:
         ipv4_address: 192.168.2.1
+    volumes:
+      - ./certs/ca.crt:/usr/local/share/ca-certificates/ca.crt
     stdin_open: true
     tty: true
 
   simul-ouvrier:
     image: d34d/projet-admin:employes-ouvrier
+    build: ./employes/ouvrier
     networks:
       local:
         ipv4_address: 192.168.2.97
+    volumes:
+      - ./certs/ca.crt:/usr/local/share/ca-certificates/ca.crt
     stdin_open: true
     tty: true
 
   simul-secretaire:
     image: d34d/projet-admin:employes-secretaire
+    build: ./employes/secretaire
     networks:
       local:
         ipv4_address: 192.168.2.33
+    volumes:
+      - ./certs/ca.crt:/usr/local/share/ca-certificates/ca.crt
     stdin_open: true
     tty: true
 
   # WEB
   web-reverseproxy:
     image: d34d/projet-admin:web-reverseproxy
+    build: ./web/reverseproxy
     networks:
       local:
         ipv4_address: 192.168.0.5
@@ -71,6 +87,7 @@ services:
 
   web-server:
     image: d34d/projet-admin:web-server
+    build: ./web/webserver
     networks:
       local:
         aliases:
@@ -89,6 +106,7 @@ services:
 
   web-db:
     image: d34d/projet-admin:web-db
+    build: ./web/db
     networks:
       local:
         ipv4_address: 192.168.1.2
@@ -104,6 +122,7 @@ services:
   # VPN
   vpn-server:
     image: d34d/projet-admin:vpn-server
+    build: ./vpn
     networks:
       local:
         ipv4_address: 192.168.0.4
@@ -125,6 +144,7 @@ services:
   # DNS
   dns:
     image: d34d/projet-admin:dns
+    build: ./dns
     networks:
       local:
         ipv4_address: 192.168.0.2
