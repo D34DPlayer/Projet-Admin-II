@@ -19,11 +19,12 @@ Utilitaire docker-compose
 
 Commandes:
 ----------
-    build    - Build le docker-compose.
-    start    - Démarre les containers. Alias: up
-    stop     - Arrête les containers. Alias: down
-    restart  - Redémarre les containers.
-    help     - Affiche l'aide.
+    build       - Build le docker-compose.
+    help        - Affiche l'aide.
+	proto-setup - Setup les certificats et les attribue aux containers.
+    restart     - Redémarre les containers.
+    start       - Démarre les containers. Alias: up
+    stop        - Arrête les containers. Alias: down
 endef
 export HELP
 
@@ -44,17 +45,20 @@ restart:
 
 proto-setup:
 	[ -d certs ] || mkdir certs
-	$(create-cert) -e SSL_KEY=apache.key \
+	$(create-cert) \
+		-e SSL_KEY=apache.key \
 		-e SSL_CERT=apache.crt \
 		-e SSL_CSR=apache.csr \
 		-e SSL_SUBJECT=www.local \
 		paulczar/omgwtfssl
-	$(create-cert) -e SSL_KEY=client.key \
+	$(create-cert) \
+		-e SSL_KEY=client.key \
 		-e SSL_CERT=client.crt \
 		-e SSL_CSR=client.csr \
 		-e "SSL_SUBJECT=DB Client" \
 		paulczar/omgwtfssl
-	$(create-cert) -e SSL_KEY=db.key \
+	$(create-cert) \
+		-e SSL_KEY=db.key \
 		-e SSL_CERT=db.crt \
 		-e SSL_CSR=db.csr \
 		-e SSL_SUBJECT=192.168.1.2 \
