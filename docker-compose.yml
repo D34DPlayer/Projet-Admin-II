@@ -5,6 +5,9 @@ services:
     image: willfarrell/autoheal
     environment:
       - "AUTOHEAL_CONTAINER_LABEL=all"
+    networks: # prevent docker from creating a default driver for this container
+      local:
+        ipv4_address: 192.168.99.99
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
 
