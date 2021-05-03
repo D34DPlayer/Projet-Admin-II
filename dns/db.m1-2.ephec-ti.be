@@ -5,7 +5,7 @@ $TTL 86400                 ; default time to live
         2021032801  ; serial number
         21600       ; Refresh
         3600        ; Retry
-        604800      ; Expire
+        1209600     ; Expire
         86400       ; Min TTL
         )
 
