@@ -1,5 +1,5 @@
-$ORIGIN ${DOMAIN_NAME}.    ; default zone domain
-$TTL 86400                 ; default time to live
+${DOLLAR}ORIGIN ${DOMAIN_NAME}.    ; default zone domain
+${DOLLAR}TTL 86400                 ; default time to live
 
 @ IN SOA ${DOMAIN_NAME}. admin.${DOMAIN_NAME}. (
         2021032801  ; serial number
