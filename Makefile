@@ -32,6 +32,8 @@ help:
 	@echo "$$HELP"
 
 build:
+	@cd employes/default && \
+	docker -t d34d/projet-admin:employes-default .
 	$(DC) build
 
 start up:
