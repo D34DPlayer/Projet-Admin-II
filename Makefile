@@ -33,7 +33,7 @@ help:
 
 build:
 	@cd employes/default && \
-	docker -t d34d/projet-admin:employes-default .
+	docker build -t d34d/projet-admin:employes-default .
 	$(DC) build
 
 start up:
@@ -107,8 +107,3 @@ proto-setup:
 
 	$(DC) down
 	$(DC) up -d
-
-	# TRUST CA IN SIMUL
-
-	docker cp ./certs/ca.crt admin_simul-commercial_1:/usr/local/share/ca-certificates/
-	docker exec admin_simul-commercial_1 update-ca-certificates
