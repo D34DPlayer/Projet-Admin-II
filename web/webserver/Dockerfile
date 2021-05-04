@@ -21,3 +21,7 @@ RUN a2enmod ssl rewrite && \
     a2ensite vitrine b2b interne
 
 RUN chown -R www-data:www-data /var/www/html
+
+COPY ./health.sh .
+
+HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD bash health.sh

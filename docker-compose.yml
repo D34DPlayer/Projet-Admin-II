@@ -15,6 +15,9 @@ services:
   simul-commercial:
     image: d34d/projet-admin:employes-commercial
     build: ./employes/commercial
+    dns: 192.168.0.2
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
     networks:
       local:
         ipv4_address: 192.168.2.129
@@ -26,6 +29,9 @@ services:
   simul-comptable:
     image: d34d/projet-admin:employes-comptable
     build: ./employes/comptable
+    dns: 192.168.0.2
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
     networks:
       local:
         ipv4_address: 192.168.2.65
@@ -37,6 +43,9 @@ services:
   simul-direction:
     image: d34d/projet-admin:employes-direction
     build: ./employes/direction
+    dns: 192.168.0.2
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
     networks:
       local:
         ipv4_address: 192.168.2.1
@@ -48,6 +57,9 @@ services:
   simul-ouvrier:
     image: d34d/projet-admin:employes-ouvrier
     build: ./employes/ouvrier
+    dns: 192.168.0.2
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
     networks:
       local:
         ipv4_address: 192.168.2.97
@@ -59,6 +71,9 @@ services:
   simul-secretaire:
     image: d34d/projet-admin:employes-secretaire
     build: ./employes/secretaire
+    dns: 192.168.0.2
+    environment:
+      - "DOMAIN_NAME=${DOMAIN_NAME}"
     networks:
       local:
         ipv4_address: 192.168.2.33
@@ -74,9 +89,6 @@ services:
     networks:
       local:
         ipv4_address: 192.168.0.5
-        aliases:
-          - "www.${DOMAIN_NAME}" # EN ATTENDANT LE DNS
-          - "b2b.${DOMAIN_NAME}" # EN ATTENDANT LE DNS
     volumes:
       - "web-caddy-data:/data"
     ports:
@@ -97,7 +109,6 @@ services:
           - "web-b2b"
           - "web-vitrine"
           - "web-interne"
-          - "www.local" #EN ATTENDANT LE DNS
         ipv4_address: 192.168.0.3
     environment:
       - "DOMAIN_NAME=${DOMAIN_NAME}"
