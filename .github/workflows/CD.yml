@@ -19,6 +19,6 @@ jobs:
           script: | 
             cd ${{ secrets.PROJECT_PATH }}
             git pull
-            make compose_file=docker-compose.prod.yml build
-            make compose_file=docker-compose.prod.yml start
+            make build
+            make start
 
