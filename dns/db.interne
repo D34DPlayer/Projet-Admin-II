@@ -5,7 +5,7 @@ ${DOLLAR}TTL 86400                 ; default time to live
         2021032801  ; serial number
         21600       ; Refresh
         3600        ; Retry
-        1209600     ; Expire
+        604800      ; Expire
         86400       ; Min TTL
         )
 
@@ -14,9 +14,7 @@ ${DOLLAR}TTL 86400                 ; default time to live
 		A       192.168.0.3
 
 
-ns1   IN     A        ${PUBLIC_IP}
+ns1   IN     A        192.168.0.2
 www   IN     A        192.168.0.3
-www   IN     A        ${PUBLIC_IP}
 b2b   IN     CNAME    www
 mail  IN     A        192.168.0.7
-mail  IN     A        ${PUBLIC_IP}
