@@ -11,10 +11,10 @@ ${DOLLAR}TTL 86400                 ; default time to live
 
         NS      ns1.${DOMAIN_NAME}.
         MX      10 mail.${DOMAIN_NAME}.
-		A       192.168.0.3
+		A       192.168.0.5
 
 
 ns1   IN     A        192.168.0.2
-www   IN     A        192.168.0.3
+www   IN     A        192.168.0.5
 b2b   IN     CNAME    www
 mail  IN     A        192.168.0.7
