@@ -40,7 +40,7 @@ start up:
 	$(DC) up -d
 
 stop down:
-	$(DC) down
+	$(DC) down -t 3
 
 restart:
 	$(DC) restart

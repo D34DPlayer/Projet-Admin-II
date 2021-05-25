@@ -128,7 +128,7 @@ services:
       - "web-db-data:/var/lib/mysql"
       - "web-db-crt:/etc/mysql/ssl"
     environment:
-      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=${DB_PASS}"
     deploy:
       placement:
         constraints: [node.role == manager] # Pour que la db se lance tjrs au même endroit, avec le même volume
